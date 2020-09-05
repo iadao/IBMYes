@@ -5,10 +5,13 @@ on:
     branches: [ master ]
   schedule:
     - cron: '0 12 * * FRI'
+  watch:
+    types: started
 
 jobs:
   ibm-cloud-restart:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
     - uses: actions/checkout@v2
